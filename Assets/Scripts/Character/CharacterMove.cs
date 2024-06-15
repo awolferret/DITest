@@ -10,11 +10,7 @@ public class CharacterMove : MonoBehaviour
 
     private void Awake() => _inputService = Game.InputService;
 
-    private void Start()
-    {
-        _camera = Camera.main;
-        CameraFollow();
-    }
+    private void Start() => _camera = Camera.main;
 
     private void Update()
     {
@@ -32,6 +28,5 @@ public class CharacterMove : MonoBehaviour
         movementVector += Physics.gravity;
         _controller.Move(_movementSpeed * movementVector * Time.deltaTime);
     }
-
-    private void CameraFollow() => _camera.GetComponent<CameraFollow>().Follow(gameObject);
+    
 }

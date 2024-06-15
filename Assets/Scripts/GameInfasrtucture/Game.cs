@@ -3,17 +3,10 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public static IInputService InputService;
+    public readonly GameStateMachine StateMachine;
 
-    public Game()
+    public Game(ICoroutineRunner coroutineRunner)
     {
-        RegisterInputService();
-    }
-
-    private static void RegisterInputService()
-    {
-        if (Application.isEditor)
-            InputService = new StandAloneInputService();
-        else
-            InputService = new MobileInputService();
+        StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner));
     }
 }

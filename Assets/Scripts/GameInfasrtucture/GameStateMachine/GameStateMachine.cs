@@ -4,19 +4,37 @@ using UnityEngine;
 
 public class GameStateMachine : MonoBehaviour
 {
-    private readonly Dictionary<Type, IState> _states;
-    private IState _activeState;
+    private readonly Dictionary<Type, IExitableState> _states;
+    private IExitableState _activeState;
 
-    public GameStateMachine()
+    public GameStateMachine(SceneLoader sceneLoader)
     {
-        _states = new Dictionary<Type, IState>();
+        _states = new Dictionary<Type, IExitableState>()
+        {
+            [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
+            [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader)
+        };
     }
 
-    public void Enter<TState>() where TState : IState
+    public void Enter<TState>() where TState : class, IState
+    {
+        IState state = ChangeState<TState>();
+        state.Enter();
+    }
+    
+    public void Enter<TState, TPayload>(TPayload payload) where TState : class, IPayloadedState<TPayload>
+    {
+        TState state = ChangeState<TState>();
+        state.Enter(payload);
+    }
+
+    private TState GetState<TState>() where TState : class, IExitableState => _states[typeof(TState)] as TState;
+    
+    private TState ChangeState<TState>() where TState : class, IExitableState
     {
         _activeState?.Exit();
-        IState state = _states[typeof(TState)];
+        TState state = GetState<TState>();
         _activeState = state;
-        state.Enter();
+        return state;
     }
 }

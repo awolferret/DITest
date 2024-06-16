@@ -1,12 +1,16 @@
+using GameInfasrtucture.Services;
+using UI;
 using UnityEngine;
 
-public class Game : MonoBehaviour
+namespace GameInfasrtucture
 {
-    public static IInputService InputService;
-    public readonly GameStateMachine StateMachine;
-
-    public Game(ICoroutineRunner coroutineRunner, LoadingScreen loadingScreen)
+    public class Game : MonoBehaviour
     {
-        StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner),loadingScreen);
+        public readonly GameStateMachine.GameStateMachine StateMachine;
+
+        public Game(ICoroutineRunner coroutineRunner, LoadingScreen loadingScreen)
+        {
+            StateMachine = new GameStateMachine.GameStateMachine(new SceneLoader(coroutineRunner),loadingScreen, AllServices.Container);
+        }
     }
 }

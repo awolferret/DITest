@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-class MobileInputService : InputSevice
+namespace GameInfasrtucture.Services.Input
 {
-    public override Vector2 Axis => SimpleInputAxis();
+    class MobileInputService : InputSevice
+    {
+        public override Vector2 Axis => SimpleInputAxis();
+    }
 }

@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public interface IInputService
+namespace GameInfasrtucture.Services.Input
 {
-    Vector2 Axis { get; }
-    bool IsAttackButtonUp();
+    public interface IInputService : IService
+    {
+        Vector2 Axis { get; }
+        bool IsAttackButtonUp();
+    }
 }

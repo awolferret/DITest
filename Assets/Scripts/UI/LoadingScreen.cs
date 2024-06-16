@@ -1,28 +1,31 @@
 using System.Collections;
 using UnityEngine;
 
-public class LoadingScreen : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private CanvasGroup _canvasGroup;
-
-    private void Awake() => DontDestroyOnLoad(this);
-
-    public void Show()
+    public class LoadingScreen : MonoBehaviour
     {
-        gameObject.SetActive(true);
-        _canvasGroup.alpha = 1f;
-    }
+        [SerializeField] private CanvasGroup _canvasGroup;
 
-    public void Hide() => StartCoroutine(FadeIn());
+        private void Awake() => DontDestroyOnLoad(this);
 
-    private IEnumerator FadeIn()
-    {
-        while (_canvasGroup.alpha > 0)
+        public void Show()
         {
-            _canvasGroup.alpha -= 0.03f;
-            yield return new WaitForSeconds(0.03f);
+            gameObject.SetActive(true);
+            _canvasGroup.alpha = 1f;
         }
 
-        gameObject.SetActive(false);
+        public void Hide() => StartCoroutine(FadeIn());
+
+        private IEnumerator FadeIn()
+        {
+            while (_canvasGroup.alpha > 0)
+            {
+                _canvasGroup.alpha -= 0.03f;
+                yield return new WaitForSeconds(0.03f);
+            }
+
+            gameObject.SetActive(false);
+        }
     }
 }

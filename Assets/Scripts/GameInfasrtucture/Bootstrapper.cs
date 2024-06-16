@@ -1,16 +1,21 @@
+using GameInfasrtucture.GameStateMachine.States;
+using UI;
 using UnityEngine;
 
-public class Bootstrapper : MonoBehaviour, ICoroutineRunner
+namespace GameInfasrtucture
 {
-    [SerializeField] private LoadingScreen _loadingScreen;
-    
-    private Game _game;
-
-    private void Awake()
+    public class Bootstrapper : MonoBehaviour, ICoroutineRunner
     {
-        _game = new Game(this,_loadingScreen);
-        _game.StateMachine.Enter<BootstrapState>();
+        [SerializeField] private LoadingScreen _loadingScreen;
+    
+        private Game _game;
 
-        DontDestroyOnLoad(this);
+        private void Awake()
+        {
+            _game = new Game(this,_loadingScreen);
+            _game.StateMachine.Enter<BootstrapState>();
+
+            DontDestroyOnLoad(this);
+        }
     }
 }

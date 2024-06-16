@@ -5,6 +5,7 @@ public class LoadLevelState : IPayloadedState<string>
     private readonly GameStateMachine _gameStateMachine;
     private readonly SceneLoader _sceneLoader;
     private readonly LoadingScreen _loadingScreen;
+    private readonly IGameFactory _gameFactory;
 
     public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingScreen loadingScreen)
     {
@@ -24,23 +25,11 @@ public class LoadLevelState : IPayloadedState<string>
     private void OnLoaded()
     {
         GameObject initialPoint = GameObject.FindWithTag("InitialPoint");
-        GameObject hero = Instantiate(Constants.HeroPath, initialPoint.transform.position);
-        Instantiate(Constants.HUDPath);
+        GameObject hero = _gameFactory.CreateHero(initialPoint);
+        _gameFactory.CreateHud();
         CameraFollow(hero);
         _gameStateMachine.Enter<GameLoopState>();
     }
 
-    private void CameraFollow(GameObject hero) => Camera.main.GetComponent<CameraFollow>().Follow(hero);
-
-    private static GameObject Instantiate(string path)
-    {
-        var prefab = Resources.Load<GameObject>(path);
-        return Object.Instantiate(prefab);
-    }
-
-    private static GameObject Instantiate(string path, Vector3 spawnPoint)
-    {
-        var prefab = Resources.Load<GameObject>(path);
-        return Object.Instantiate(prefab, spawnPoint, Quaternion.identity);
-    }
+    private static void CameraFollow(GameObject hero) => Camera.main.GetComponent<CameraFollow>().Follow(hero);
 }

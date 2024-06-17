@@ -1,18 +1,18 @@
 using GameInfasrtucture.GameStateMachine.States;
-using UI;
+using Logic;
 using UnityEngine;
 
 namespace GameInfasrtucture
 {
     public class Bootstrapper : MonoBehaviour, ICoroutineRunner
     {
-        [SerializeField] private LoadingScreen _loadingScreen;
-    
+        [SerializeField] private LoadingScreen _loadingScreenPrefab;
+
         private Game _game;
 
         private void Awake()
         {
-            _game = new Game(this,_loadingScreen);
+            _game = new Game(this, Instantiate(_loadingScreenPrefab));
             _game.StateMachine.Enter<BootstrapState>();
 
             DontDestroyOnLoad(this);

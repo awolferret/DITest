@@ -2,7 +2,7 @@
 
 namespace GameInfasrtucture.AssetManagement
 {
-    public class AssetProvider : IAssetProvider
+    public class Asset : IAsset
     {
         public GameObject Instantiate(string path)
         {

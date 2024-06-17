@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameInfasrtucture.AssetManagement
 {
-    public interface IAssetProvider : IService
+    public interface IAsset : IService
     {
         GameObject Instantiate(string path);
         GameObject Instantiate(string path, Vector3 spawnPoint);

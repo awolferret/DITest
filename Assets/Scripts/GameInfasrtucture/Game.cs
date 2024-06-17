@@ -1,5 +1,5 @@
 using GameInfasrtucture.Services;
-using UI;
+using Logic;
 using UnityEngine;
 
 namespace GameInfasrtucture

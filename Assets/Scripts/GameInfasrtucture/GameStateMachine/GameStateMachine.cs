@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using GameInfasrtucture.Factory;
 using GameInfasrtucture.GameStateMachine.States;
 using GameInfasrtucture.Services;
-using UI;
+using GameInfasrtucture.Services.PersistentProgress;
+using GameInfasrtucture.Services.PersistentProgress.SaveLoad;
+using Logic;
 using UnityEngine;
 
 namespace GameInfasrtucture.GameStateMachine
@@ -19,7 +21,10 @@ namespace GameInfasrtucture.GameStateMachine
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, allServices),
                 [typeof(LoadLevelState)] =
-                    new LoadLevelState(this, sceneLoader, loadingScreen, allServices.Single<IGameFactory>()),
+                    new LoadLevelState(this, sceneLoader, loadingScreen, allServices.Single<IGameFactory>(),
+                        allServices.Single<IPersistentProgressService>()),
+                [typeof(LoadProgressState)] = new LoadProgressState(this,
+                    allServices.Single<IPersistentProgressService>(), allServices.Single<ISaveLoadService>()),
                 [typeof(GameLoopState)] = new GameLoopState(this)
             };
         }

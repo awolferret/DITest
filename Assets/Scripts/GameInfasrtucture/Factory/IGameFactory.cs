@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GameInfasrtucture.Services;
 using GameInfasrtucture.Services.PersistentProgress;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace GameInfasrtucture.Factory
     {
         GameObject CreateHero(GameObject initialPoint);
         void CreateHud();
+        GameObject HeroGameObject { get; set; }
+        event Action HeroCrated;
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
         void CleanUp();

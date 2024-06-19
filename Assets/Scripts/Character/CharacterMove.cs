@@ -57,7 +57,6 @@ namespace Character
 
         private void Warp(Vector3Data warpTo)
         {
-            Debug.Log("dwad");
             _controller.enabled = false;
             transform.position = warpTo.AsUnityVector().AddY(_controller.height);
             _controller.enabled = true;

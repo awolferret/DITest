@@ -7,7 +7,6 @@ namespace GameInfasrtucture.GameStateMachine
 {
     public class LoadProgressState : IState
     {
-
         private readonly GameStateMachine _gameStateMachine;
         private readonly IPersistentProgressService _progressService;
         private readonly ISaveLoadService _saveLoadService;
@@ -31,12 +30,16 @@ namespace GameInfasrtucture.GameStateMachine
         {
         }
 
-        private void LoadProgressOnInitNew()
-        {
-            _progressService.PlayerProgress = _saveLoadService.LoadProgress() ?? NewProgress();
-        }
+        private void LoadProgressOnInitNew() => _progressService.PlayerProgress = _saveLoadService.LoadProgress() ?? NewProgress();
 
-        private PlayerProgress NewProgress() =>
-            new PlayerProgress(Constants.GameSceneName);
+        private PlayerProgress NewProgress()
+        {
+            PlayerProgress playerProgress = new PlayerProgress(Constants.GameSceneName);
+
+            playerProgress.HeroState.MaxHealth = 50f;
+            playerProgress.HeroState.ResetHP();
+            
+            return playerProgress;
+        }
     }
 }

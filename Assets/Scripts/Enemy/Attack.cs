@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Character;
 using GameInfasrtucture;
 using GameInfasrtucture.Factory;
 using GameInfasrtucture.Services;
@@ -8,10 +9,10 @@ namespace Enemy
 {
     public class Attack : MonoBehaviour
     {
-
         [SerializeField] private float _attackCooldown = 3f;
         [SerializeField] private float Cleavage = .5f;
         [SerializeField] private float _attackDistance = .5f;
+        [SerializeField] private float _damage = 10;
 
         private IGameFactory _gameFactory;
         private Transform _heroTransform;
@@ -45,6 +46,7 @@ namespace Enemy
         {
             if (Hit(out Collider hit))
             {
+                hit.transform.GetComponent<HeroHealth>().TakeDamage(_damage);
                 Debug.Log("Attack");
                 UpdateTime();
             }

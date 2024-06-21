@@ -9,7 +9,7 @@ namespace GameInfasrtucture.Factory
     public interface IGameFactory : IService
     {
         GameObject CreateHero(GameObject initialPoint);
-        void CreateHud();
+        GameObject CreateHud();
         GameObject HeroGameObject { get; set; }
         event Action HeroCrated;
         List<ISavedProgressReader> ProgressReaders { get; }

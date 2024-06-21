@@ -1,6 +1,8 @@
 ﻿using CameraLogic;
+using Character;
 using GameInfasrtucture.Factory;
 using GameInfasrtucture.Services.PersistentProgress;
+using GameInfasrtucture.UI;
 using Logic;
 using UnityEngine;
 
@@ -49,8 +51,14 @@ namespace GameInfasrtucture.GameStateMachine.States
         private void InitGameWorld()
         {
             GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(Constants.Initialpoint));
-            _gameFactory.CreateHud();
+            InitHud(hero);
             CameraFollow(hero);
+        }
+
+        private void InitHud(GameObject hero)
+        {
+            GameObject hud = _gameFactory.CreateHud();
+            hud.GetComponentInChildren<ActorUI>().Constract(hero.GetComponent<HeroHealth>());
         }
 
         private static void CameraFollow(GameObject hero) => Camera.main.GetComponent<CameraFollow>().Follow(hero);

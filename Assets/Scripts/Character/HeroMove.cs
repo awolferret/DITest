@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Character
 {
-    public class CharacterMove : MonoBehaviour, ISavedProgress
+    public class HeroMove : MonoBehaviour, ISavedProgress
     {
         [SerializeField] private CharacterController _controller;
         [SerializeField] private float _movementSpeed;
@@ -47,7 +47,7 @@ namespace Character
             }
         }
 
-        public void UpdareProgress(PlayerProgress progress)
+        public void UpdateProgress(PlayerProgress progress)
         {
             progress.WorldData.PositionOnLevel =
                 new PositionOnLevel(CurrnetLevel(), transform.position.AsVectorData());

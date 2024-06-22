@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using Character;
 using GameInfasrtucture;
 using GameInfasrtucture.Factory;
 using GameInfasrtucture.Services;
+using Logic;
 using UnityEngine;
 
 namespace Enemy
@@ -46,7 +46,7 @@ namespace Enemy
         {
             if (Hit(out Collider hit))
             {
-                hit.transform.GetComponent<HeroHealth>().TakeDamage(_damage);
+                hit.transform.GetComponent<IHealth>().TakeDamage(_damage);
                 Debug.Log("Attack");
                 UpdateTime();
             }

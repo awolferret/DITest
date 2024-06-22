@@ -11,5 +11,6 @@ namespace GameInfasrtucture
         public const string GameSceneName = "Game";
         public const string Initialpoint = "InitialPoint";
         public const string LayerName = "Player";
+        public const string LayerNameHitable = "Hitable";
     }
 }

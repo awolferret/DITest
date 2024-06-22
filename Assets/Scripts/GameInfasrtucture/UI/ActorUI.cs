@@ -1,5 +1,4 @@
-﻿using System;
-using Character;
+﻿using Logic;
 using UnityEngine;
 
 namespace GameInfasrtucture.UI
@@ -8,17 +7,28 @@ namespace GameInfasrtucture.UI
     {
         [SerializeField] private HealthBar _healthBar;
 
-        private HeroHealth _heroHealth;
+        private IHealth _heroHealth;
 
-        private void OnDestroy() =>
-            _heroHealth.HealthChanged -= UpdateHealthBar;
+        private void Start()
+        {
+            IHealth health = GetComponent<IHealth>();
 
-        public void Constract(HeroHealth heroHealth)
+            if (health != null)
+                Constract(health);
+        }
+
+        private void OnDestroy()
+        {
+            if (_heroHealth != null)
+                _heroHealth.HealthChanged -= UpdateHealthBar;
+        }
+
+        public void Constract(IHealth heroHealth)
         {
             _heroHealth = heroHealth;
             _heroHealth.HealthChanged += UpdateHealthBar;
         }
 
-        private void UpdateHealthBar() => _healthBar.SetValue(_heroHealth.CurrentHealth,_heroHealth.MaxHealth);
+        private void UpdateHealthBar() => _healthBar.SetValue(_heroHealth.CurrentHealth, _heroHealth.MaxHealth);
     }
 }

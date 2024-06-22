@@ -58,7 +58,7 @@ namespace GameInfasrtucture.GameStateMachine.States
         private void InitHud(GameObject hero)
         {
             GameObject hud = _gameFactory.CreateHud();
-            hud.GetComponentInChildren<ActorUI>().Constract(hero.GetComponent<HeroHealth>());
+            //hud.GetComponentInChildren<ActorUI>().Constract(hero.GetComponent<IHealth>());
         }
 
         private static void CameraFollow(GameObject hero) => Camera.main.GetComponent<CameraFollow>().Follow(hero);

@@ -18,7 +18,7 @@ namespace GameInfasrtucture.Services.PersistentProgress.SaveLoad
         public void SaveProgress()
         {
             foreach (ISavedProgress ProgressWriter in _gameFactory.ProgressWriters)
-                ProgressWriter.UpdareProgress(_progressService.PlayerProgress);
+                ProgressWriter.UpdateProgress(_progressService.PlayerProgress);
 
             PlayerPrefs.SetString(Constants.ProgressKey, _progressService.PlayerProgress.ToJson());
         }

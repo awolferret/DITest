@@ -1,15 +1,16 @@
 ﻿using System;
 using Data;
 using GameInfasrtucture.Services.PersistentProgress;
+using Logic;
 using UnityEngine;
 
 namespace Character
 {
-    public class HeroHealth : MonoBehaviour, ISavedProgress
+    public class HeroHealth : MonoBehaviour, ISavedProgress, IHealth
     {
         private HeroState _progressHeroState;
 
-        public Action HealthChanged;
+        public event Action HealthChanged;
 
         public float CurrentHealth
         {
@@ -18,8 +19,8 @@ namespace Character
             {
                 if (_progressHeroState.CurrentHealth != value)
                 {
-                    HealthChanged?.Invoke();
                     _progressHeroState.CurrentHealth = value;
+                    HealthChanged?.Invoke();
                 }
             }
         }
@@ -36,7 +37,7 @@ namespace Character
             HealthChanged?.Invoke();
         }
 
-        public void UpdareProgress(PlayerProgress progress)
+        public void UpdateProgress(PlayerProgress progress)
         {
             progress.HeroState.CurrentHealth = CurrentHealth;
             progress.HeroState.MaxHealth = MaxHealth;

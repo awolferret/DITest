@@ -7,11 +7,13 @@ namespace Data
     {
         public WorldData WorldData;
         public HeroState HeroState;
+        public Stats HeroStats;
         
         public PlayerProgress(string name)
         {
             WorldData = new WorldData(name);
             HeroState = new HeroState();
+            HeroStats = new Stats();
         }
     }
 }

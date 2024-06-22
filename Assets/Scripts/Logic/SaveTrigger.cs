@@ -16,7 +16,7 @@ namespace Logic
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<CharacterMove>())
+            if (other.GetComponent<HeroMove>())
             {
                 _saveLoadService.SaveProgress();
                 gameObject.SetActive(false);

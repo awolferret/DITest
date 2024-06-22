@@ -30,7 +30,8 @@ namespace GameInfasrtucture.GameStateMachine
         {
         }
 
-        private void LoadProgressOnInitNew() => _progressService.PlayerProgress = _saveLoadService.LoadProgress() ?? NewProgress();
+        private void LoadProgressOnInitNew() =>
+            _progressService.PlayerProgress = _saveLoadService.LoadProgress() ?? NewProgress();
 
         private PlayerProgress NewProgress()
         {
@@ -38,7 +39,9 @@ namespace GameInfasrtucture.GameStateMachine
 
             playerProgress.HeroState.MaxHealth = 50f;
             playerProgress.HeroState.ResetHP();
-            
+            playerProgress.HeroStats.Damage = 1f;
+            playerProgress.HeroStats.DamageRadius = .5f;
+
             return playerProgress;
         }
     }

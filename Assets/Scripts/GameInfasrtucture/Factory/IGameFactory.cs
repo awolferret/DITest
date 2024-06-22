@@ -15,5 +15,6 @@ namespace GameInfasrtucture.Factory
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
         void CleanUp();
+        void Register(ISavedProgressReader savedProgress);
     }
 }

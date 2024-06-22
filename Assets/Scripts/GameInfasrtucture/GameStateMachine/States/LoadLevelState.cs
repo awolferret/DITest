@@ -1,8 +1,6 @@
 ﻿using CameraLogic;
-using Character;
 using GameInfasrtucture.Factory;
 using GameInfasrtucture.Services.PersistentProgress;
-using GameInfasrtucture.UI;
 using Logic;
 using UnityEngine;
 
@@ -50,16 +48,22 @@ namespace GameInfasrtucture.GameStateMachine.States
 
         private void InitGameWorld()
         {
+            InitSpawners();
             GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(Constants.Initialpoint));
-            InitHud(hero);
+            InitHud();
             CameraFollow(hero);
         }
 
-        private void InitHud(GameObject hero)
+        private void InitSpawners()
         {
-            GameObject hud = _gameFactory.CreateHud();
-            //hud.GetComponentInChildren<ActorUI>().Constract(hero.GetComponent<IHealth>());
+            foreach (GameObject spawnerObject in GameObject.FindGameObjectsWithTag("EnemySpawner"))
+            {
+                EnemySpawner spawner = spawnerObject.GetComponent<EnemySpawner>();
+                _gameFactory.Register(spawner);
+            }
         }
+
+        private void InitHud() => _gameFactory.CreateHud();
 
         private static void CameraFollow(GameObject hero) => Camera.main.GetComponent<CameraFollow>().Follow(hero);
     }

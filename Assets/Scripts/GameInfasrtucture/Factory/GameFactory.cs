@@ -15,10 +15,7 @@ namespace GameInfasrtucture.Factory
         public GameObject HeroGameObject { get; set; }
         public event Action HeroCrated;
 
-        public GameFactory(IAsset asset)
-        {
-            _asset = asset;
-        }
+        public GameFactory(IAsset asset) => _asset = asset;
 
         public GameObject CreateHero(GameObject initialPoint)
         {
@@ -35,6 +32,14 @@ namespace GameInfasrtucture.Factory
         {
             ProgressReaders.Clear();
             ProgressWriters.Clear();
+        }
+
+        public void Register(ISavedProgressReader progressReader)
+        {
+            if (progressReader is ISavedProgress progressWriter)
+                ProgressWriters.Add(progressWriter);
+
+            ProgressReaders.Add(progressReader);
         }
 
         private GameObject InstantiateRegistered(string prefabPath, Vector3 position)
@@ -55,14 +60,6 @@ namespace GameInfasrtucture.Factory
         {
             foreach (ISavedProgressReader progressReader in gameObject.GetComponentsInChildren<ISavedProgressReader>())
                 Register(progressReader);
-        }
-
-        private void Register(ISavedProgressReader progressReader)
-        {
-            if (progressReader is ISavedProgress progressWriter)
-                ProgressWriters.Add(progressWriter);
-
-            ProgressReaders.Add(progressReader);
         }
     }
 }

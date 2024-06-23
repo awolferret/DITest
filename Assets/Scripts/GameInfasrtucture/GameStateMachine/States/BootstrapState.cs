@@ -1,9 +1,11 @@
-﻿using GameInfasrtucture.AssetManagement;
+﻿using System.ComponentModel;
+using GameInfasrtucture.AssetManagement;
 using GameInfasrtucture.Factory;
 using GameInfasrtucture.Services;
 using GameInfasrtucture.Services.Input;
 using GameInfasrtucture.Services.PersistentProgress;
 using GameInfasrtucture.Services.PersistentProgress.SaveLoad;
+using StaticData;
 using UnityEngine;
 
 namespace GameInfasrtucture.GameStateMachine.States
@@ -35,13 +37,21 @@ namespace GameInfasrtucture.GameStateMachine.States
 
         private void RegisterServices()
         {
-            _services.RegisterSingle<IInputService>(InputService());
+            RegisterStaticData();
+            _services.RegisterSingle(InputService());
             _services.RegisterSingle<IAsset>(new Asset());
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
             _services.RegisterSingle<IGameFactory>(
-                new GameFactory(_services.Single<IAsset>()));
+                new GameFactory(_services.Single<IAsset>(), _services.Single<StaticDataService>()));
             _services.RegisterSingle<ISaveLoadService>(
                 new SaveLoadService(_services.Single<IPersistentProgressService>(), _services.Single<IGameFactory>()));
+        }
+
+        private void RegisterStaticData()
+        {
+            StaticDataService staticData = new StaticDataService();
+            staticData.LoadMonsters();
+            _services.RegisterSingle(staticData);
         }
 
         private static IInputService InputService()

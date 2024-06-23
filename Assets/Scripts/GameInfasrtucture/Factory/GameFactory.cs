@@ -1,32 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Enemy;
 using GameInfasrtucture.AssetManagement;
+using GameInfasrtucture.Services;
 using GameInfasrtucture.Services.PersistentProgress;
+using GameInfasrtucture.UI;
+using Logic;
+using StaticData;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace GameInfasrtucture.Factory
 {
     public class GameFactory : IGameFactory
     {
         private readonly IAsset _asset;
+        private readonly IStaticDataService _staticData;
 
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
-        public GameObject HeroGameObject { get; set; }
-        public event Action HeroCrated;
+        private GameObject _heroGameObject { get; set; }
 
-        public GameFactory(IAsset asset) => _asset = asset;
+        public GameFactory(IAsset asset, IStaticDataService staticData)
+        {
+            _asset = asset;
+            _staticData = staticData;
+        }
 
         public GameObject CreateHero(GameObject initialPoint)
         {
-            HeroGameObject = InstantiateRegistered(Constants.HeroPath, initialPoint.transform.position);
-            HeroCrated?.Invoke();
-            return HeroGameObject;
+            _heroGameObject = InstantiateRegistered(Constants.HeroPath, initialPoint.transform.position);
+            return _heroGameObject;
         }
 
-        public GameObject CreateHud() =>
-            InstantiateRegistered(Constants.HUDPath);
+        public void CreateHud()
+        {
+            GameObject hud = InstantiateRegistered(Constants.HUDPath);
+            hud.GetComponent<ActorUI>().Constract(_heroGameObject.GetComponent<IHealth>());
+        }
+        
+        public GameObject CreateMonster(MonsterTypeId monsterType, Transform parent)
+        {
+            MonsterStaticData monsterData = _staticData.ForMonster(monsterType);
+            GameObject monster = Object.Instantiate(monsterData.Prefab, parent.position, Quaternion.identity, parent);
+            IHealth health = monster.GetComponent<IHealth>();
+            health.CurrentHealth = monsterData.Health;
+            health.MaxHealth = monsterData.Health;
+            monster.GetComponent<ActorUI>().Constract(health);
+            monster.GetComponent<AgentMoverToPlayer>().Constract(_heroGameObject.transform, monsterData.MoveSpeed);
+            Attack attack = monster.GetComponent<Attack>();
+            attack.Construct(_heroGameObject.transform, monsterData.Damage, monsterData.Range, monsterData.Cleavage,
+                monsterData.AttackCoolDown);
 
+            return monster;
+        }
 
         public void CleanUp()
         {

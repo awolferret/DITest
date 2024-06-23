@@ -1,7 +1,5 @@
 ﻿using System.Linq;
 using GameInfasrtucture;
-using GameInfasrtucture.Factory;
-using GameInfasrtucture.Services;
 using Logic;
 using UnityEngine;
 
@@ -10,28 +8,28 @@ namespace Enemy
     public class Attack : MonoBehaviour
     {
         [SerializeField] private float _attackCooldown = 3f;
-        [SerializeField] private float Cleavage = .5f;
+        [SerializeField] private float _cleavage = .5f;
         [SerializeField] private float _attackDistance = .5f;
         [SerializeField] private float _damage = 10;
 
-        private IGameFactory _gameFactory;
         private Transform _heroTransform;
         private float _time;
         private int _layerMask;
         private Collider[] _hits = new Collider[1];
 
-        private void Awake()
+        public void Construct(Transform hero, float damage, float attackDistance, float cleavage, float attackCooldown)
         {
-            _gameFactory = AllServices.Container.Single<IGameFactory>();
-            _gameFactory.HeroCrated += OnHeroCreated;
-            _layerMask = 1 << LayerMask.NameToLayer(Constants.LayerName);
-            UpdateTime();
+            _heroTransform = hero;
+            _damage = damage;
+            _attackDistance = attackDistance;
+            _cleavage = cleavage;
+            _attackCooldown = attackCooldown;
         }
 
-        private void OnHeroCreated()
+        private void Awake()
         {
-            _gameFactory.HeroCrated -= OnHeroCreated;
-            _heroTransform = _gameFactory.HeroGameObject.transform;
+            _layerMask = 1 << LayerMask.NameToLayer(Constants.LayerName);
+            UpdateTime();
         }
 
         private void Update()
@@ -54,7 +52,7 @@ namespace Enemy
 
         private bool Hit(out Collider hit)
         {
-            int hitCount = Physics.OverlapSphereNonAlloc(StartPoint(), Cleavage, _hits, _layerMask);
+            int hitCount = Physics.OverlapSphereNonAlloc(StartPoint(), _cleavage, _hits, _layerMask);
             hit = _hits.FirstOrDefault();
             return hitCount > 0;
         }

@@ -23,9 +23,9 @@ namespace GameInfasrtucture.UI
                 _heroHealth.HealthChanged -= UpdateHealthBar;
         }
 
-        public void Constract(IHealth heroHealth)
+        public void Constract(IHealth health)
         {
-            _heroHealth = heroHealth;
+            _heroHealth = health;
             _heroHealth.HealthChanged += UpdateHealthBar;
         }
 

@@ -5,6 +5,7 @@ using GameInfasrtucture.Services;
 using GameInfasrtucture.Services.PersistentProgress;
 using GameInfasrtucture.UI;
 using Logic;
+using Logic.EnemySpawners;
 using StaticData;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -44,6 +45,7 @@ namespace GameInfasrtucture.Factory
 
         public GameObject CreateMonster(MonsterTypeId monsterType, Transform parent)
         {
+            Debug.Log(_staticData);
             MonsterStaticData monsterData = _staticData.ForMonster(monsterType);
             GameObject monster = Object.Instantiate(monsterData.Prefab, parent.position, Quaternion.identity, parent);
             IHealth health = monster.GetComponent<IHealth>();
@@ -69,6 +71,15 @@ namespace GameInfasrtucture.Factory
 
             lootPiece.Construct(_progressService.PlayerProgress.WorldData);
             return lootPiece;
+        }
+
+        public void CreateSpawner(Vector3 position, string id, MonsterTypeId monsterType)
+        {
+            SpawnPoint spawner = InstantiateRegistered(Constants.SpawnerPath, position)
+                .GetComponent<SpawnPoint>();
+
+            spawner.Construct(this);
+            spawner.Init(id, monsterType);
         }
 
         public void CleanUp()

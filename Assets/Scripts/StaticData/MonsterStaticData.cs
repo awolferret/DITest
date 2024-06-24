@@ -2,7 +2,7 @@
 
 namespace StaticData
 {
-    [CreateAssetMenu(fileName = "MonsterData", menuName = "staticData/Monster")]
+    [CreateAssetMenu(fileName = "MonsterData", menuName = "StaticData/Monster")]
     public class MonsterStaticData : ScriptableObject
     {
         public MonsterTypeId MonsterTypeId;

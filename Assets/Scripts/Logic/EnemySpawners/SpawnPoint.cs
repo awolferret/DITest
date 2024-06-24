@@ -1,17 +1,15 @@
 ﻿using Data;
 using Enemy;
 using GameInfasrtucture.Factory;
-using GameInfasrtucture.Services;
 using GameInfasrtucture.Services.PersistentProgress;
 using StaticData;
 using UnityEngine;
 
-namespace Logic
+namespace Logic.EnemySpawners
 {
-    public class EnemySpawner : MonoBehaviour, ISavedProgress
+    public class SpawnPoint : MonoBehaviour, ISavedProgress
     {
-        [SerializeField] private MonsterTypeId _monsterType;
-
+        private MonsterTypeId _monsterType;
         private string _id;
         private bool _slain;
         private IGameFactory _factory;
@@ -19,10 +17,12 @@ namespace Logic
 
         public bool Slain => _slain;
 
-        private void Awake()
+        public void Construct(IGameFactory factory) => _factory = factory;
+
+        public void Init(string id, MonsterTypeId monsterType)
         {
-            _id = GetComponent<UniqueId>().Id;
-            _factory = AllServices.Container.Single<IGameFactory>();
+            _id = id;
+            _monsterType = monsterType;
         }
 
         public void LoadProgress(PlayerProgress progress)

@@ -6,5 +6,6 @@ namespace GameInfasrtucture.Services
     {
         void LoadMonsters();
         MonsterStaticData ForMonster(MonsterTypeId typeId);
+        LevelStaticData ForLevel(string sceneKey);
     }
 }

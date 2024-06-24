@@ -15,15 +15,17 @@ namespace GameInfasrtucture.Factory
     {
         private readonly IAsset _asset;
         private readonly IStaticDataService _staticData;
+        private readonly IPersistentProgressService _progressService;
 
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
         private GameObject _heroGameObject { get; set; }
 
-        public GameFactory(IAsset asset, IStaticDataService staticData)
+        public GameFactory(IAsset asset, IStaticDataService staticData, IPersistentProgressService progressService)
         {
             _asset = asset;
             _staticData = staticData;
+            _progressService = progressService;
         }
 
         public GameObject CreateHero(GameObject initialPoint)
@@ -35,9 +37,11 @@ namespace GameInfasrtucture.Factory
         public void CreateHud()
         {
             GameObject hud = InstantiateRegistered(Constants.HUDPath);
+            hud.GetComponentInChildren<LootCounter>()
+                .Construct(_progressService.PlayerProgress.WorldData);
             hud.GetComponent<ActorUI>().Constract(_heroGameObject.GetComponent<IHealth>());
         }
-        
+
         public GameObject CreateMonster(MonsterTypeId monsterType, Transform parent)
         {
             MonsterStaticData monsterData = _staticData.ForMonster(monsterType);
@@ -51,7 +55,20 @@ namespace GameInfasrtucture.Factory
             attack.Construct(_heroGameObject.transform, monsterData.Damage, monsterData.Range, monsterData.Cleavage,
                 monsterData.AttackCoolDown);
 
+            LootSpawner lootSpawner = monster.GetComponentInChildren<LootSpawner>();
+            lootSpawner.SetLoot(monsterData.MinValue, monsterData.MaxValue);
+            lootSpawner.Construct(this);
+
             return monster;
+        }
+
+        public LootPiece CreateLoot()
+        {
+            LootPiece lootPiece = InstantiateRegistered(Constants.LootPath)
+                .GetComponent<LootPiece>();
+
+            lootPiece.Construct(_progressService.PlayerProgress.WorldData);
+            return lootPiece;
         }
 
         public void CleanUp()

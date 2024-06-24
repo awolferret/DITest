@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: MonsterData
   m_EditorClassIdentifier: 
   MonsterTypeId: 0
+  MaxValue: 10
+  MinValue: 50
   Health: 5
   Damage: 10
   AttackCoolDown: 2.5

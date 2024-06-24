@@ -8,6 +8,8 @@ namespace Enemy
     {
         [SerializeField] private EnemyHealth _enemyHealth;
 
+        private bool _isDead = false;
+        
         public event Action OnDeath;
 
         private void OnEnable()
@@ -28,6 +30,10 @@ namespace Enemy
 
         private void Die()
         {
+            if (_isDead)
+                return;
+
+            _isDead = true;
             OnDeath?.Invoke();
             StartCoroutine(DestroyItself());
         }

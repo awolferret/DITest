@@ -12,5 +12,7 @@ namespace GameInfasrtucture
         public const string Initialpoint = "InitialPoint";
         public const string LayerName = "Player";
         public const string LayerNameHitable = "Hitable";
+        public const string StaticdataMonstersPath = "StaticData/Monsters";
+        public const string LootPath = "Loot/Loot";
     }
 }

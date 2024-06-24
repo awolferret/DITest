@@ -42,7 +42,8 @@ namespace GameInfasrtucture.GameStateMachine.States
             _services.RegisterSingle<IAsset>(new Asset());
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
             _services.RegisterSingle<IGameFactory>(
-                new GameFactory(_services.Single<IAsset>(), _services.Single<StaticDataService>()));
+                new GameFactory(_services.Single<IAsset>(), _services.Single<StaticDataService>(),
+                    _services.Single<IPersistentProgressService>()));
             _services.RegisterSingle<ISaveLoadService>(
                 new SaveLoadService(_services.Single<IPersistentProgressService>(), _services.Single<IGameFactory>()));
         }

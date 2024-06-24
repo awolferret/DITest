@@ -6,6 +6,9 @@ namespace StaticData
     public class MonsterStaticData : ScriptableObject
     {
         public MonsterTypeId MonsterTypeId;
+
+        public int MaxValue;
+        public int MinValue;
         
         [Range(1,100)]
         public int Health;

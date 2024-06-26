@@ -21,7 +21,8 @@ namespace GameInfasrtucture.GameStateMachine.States
         private readonly IUIFactory _uiFactory;
 
         public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingScreen loadingScreen,
-            IGameFactory gameFactory, IPersistentProgressService progressService, IStaticDataService staticData, IUIFactory uiFactory)
+            IGameFactory gameFactory, IPersistentProgressService progressService, IStaticDataService staticData,
+            IUIFactory uiFactory)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
@@ -55,33 +56,35 @@ namespace GameInfasrtucture.GameStateMachine.States
                 progressReader.LoadProgress(_progressService.PlayerProgress);
         }
 
-        private void InitUIRoot() => 
+        private void InitUIRoot() =>
             _uiFactory.CreateUIRoot();
 
         private void InitGameWorld()
         {
-            InitSpawners();
-            GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(Constants.Initialpoint));
+            LevelStaticData levelData = GetLevelData();
+            InitSpawners(levelData);
+            GameObject hero = InitHero(levelData);
             InitHud();
             CameraFollow(hero);
         }
 
-        private void InitSpawners()
-        {
-            string SceneKey = SceneManager.GetActiveScene().name;
-            LevelStaticData levelData = _staticData.ForLevel(SceneKey);
+        private LevelStaticData GetLevelData() => 
+            _staticData.ForLevel(SceneManager.GetActiveScene().name);
 
+        private void InitSpawners(LevelStaticData levelData)
+        {
             for (int i = 0; i < levelData.EnemySpawners.Count; i++)
-            {
                 _gameFactory.CreateSpawner(levelData.EnemySpawners[i].Position, levelData.EnemySpawners[i].Id,
                     levelData.EnemySpawners[i].MonsterType);
-            }
         }
 
         private void InitHud() =>
             _gameFactory.CreateHud();
 
-        private void CameraFollow(GameObject hero) => 
+        private GameObject InitHero(LevelStaticData levelData) =>
+            _gameFactory.CreateHero(levelData.InitialPoint);
+
+        private void CameraFollow(GameObject hero) =>
             Camera.main.GetComponent<CameraFollow>().Follow(hero);
     }
 }

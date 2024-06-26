@@ -24,7 +24,8 @@ namespace GameInfasrtucture.Factory
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
         private GameObject _heroGameObject { get; set; }
 
-        public GameFactory(IAsset asset, IStaticDataService staticData, IPersistentProgressService progressService, IWindowService windowService)
+        public GameFactory(IAsset asset, IStaticDataService staticData, IPersistentProgressService progressService,
+            IWindowService windowService)
         {
             _asset = asset;
             _staticData = staticData;
@@ -32,9 +33,9 @@ namespace GameInfasrtucture.Factory
             _windowService = windowService;
         }
 
-        public GameObject CreateHero(GameObject initialPoint)
+        public GameObject CreateHero(Vector3 initialPoint)
         {
-            _heroGameObject = InstantiateRegistered(Constants.HeroPath, initialPoint.transform.position);
+            _heroGameObject = InstantiateRegistered(Constants.HeroPath, initialPoint);
             return _heroGameObject;
         }
 
@@ -45,7 +46,7 @@ namespace GameInfasrtucture.Factory
                 .Construct(_progressService.PlayerProgress.WorldData);
             hud.GetComponent<ActorUI>().Constract(_heroGameObject.GetComponent<IHealth>());
 
-            foreach (OpenWindowButton button in hud.GetComponentsInChildren<OpenWindowButton>()) 
+            foreach (OpenWindowButton button in hud.GetComponentsInChildren<OpenWindowButton>())
                 button.Construct(_windowService);
         }
 

@@ -41,6 +41,7 @@ namespace GameInfasrtucture.GameStateMachine.States
             RegisterStaticData();
             _services.RegisterSingle(InputService());
             _services.RegisterSingle<IAsset>(new Asset());
+            _services.RegisterSingle<IGameStateMachine>(_gameStateMachine);
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
             _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAsset>(),
                 _services.Single<IStaticDataService>(), _services.Single<IPersistentProgressService>()));

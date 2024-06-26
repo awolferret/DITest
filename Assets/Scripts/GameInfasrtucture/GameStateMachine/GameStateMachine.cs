@@ -7,12 +7,11 @@ using GameInfasrtucture.Services.PersistentProgress;
 using GameInfasrtucture.Services.PersistentProgress.SaveLoad;
 using GameInfasrtucture.UI.Services.UIFactory;
 using Logic;
-using StaticData;
 using UnityEngine;
 
 namespace GameInfasrtucture.GameStateMachine
 {
-    public class GameStateMachine : MonoBehaviour
+    public class GameStateMachine : MonoBehaviour, IGameStateMachine
     {
         private readonly Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;

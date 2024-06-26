@@ -17,3 +17,4 @@ MonoBehaviour:
   - Id: _ac4c3748-6bbd-4a3d-847a-8bd87d87ea05
     MonsterType: 0
     Position: {x: 0, y: 0, z: 6.62}
+  InitialPoint: {x: 0, y: 0.5, z: -9.76}

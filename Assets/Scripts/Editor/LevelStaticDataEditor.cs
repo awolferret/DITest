@@ -5,6 +5,7 @@ using StaticData;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Constants = GameInfasrtucture.Constants;
 
 namespace Editor
 {
@@ -25,6 +26,7 @@ namespace Editor
                     .ToList();
 
                 levelData.LevelKey = SceneManager.GetActiveScene().name;
+                levelData.InitialPoint = GameObject.FindWithTag(Constants.Initialpoint).transform.position;
             }
 
             EditorUtility.SetDirty(target);

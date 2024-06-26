@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f3d3d0dbc7a45fe9aa5f5be136ca040, type: 3}
-  m_Name: Game
+  m_Script: {fileID: 11500000, guid: bca2ca693f364789af8535e7b8fcce8b, type: 3}
+  m_Name: WindowsStaticData
   m_EditorClassIdentifier: 
-  LevelKey: Game
-  EnemySpawners:
-  - Id: _ac4c3748-6bbd-4a3d-847a-8bd87d87ea05
-    MonsterType: 0
-    Position: {x: 0, y: 0, z: 6.62}
+  Configs:
+  - WindowId: 1
+    Prefab: {fileID: 2254601921910937159, guid: 6618d1ac8cb5eec40bbd1dac76e82c57, type: 3}

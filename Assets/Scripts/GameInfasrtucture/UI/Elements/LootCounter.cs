@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace GameInfasrtucture.UI
+namespace GameInfasrtucture.UI.Elements
 {
     public class LootCounter : MonoBehaviour
     {

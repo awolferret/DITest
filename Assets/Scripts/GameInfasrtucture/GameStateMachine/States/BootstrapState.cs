@@ -1,10 +1,11 @@
-﻿using System.ComponentModel;
-using GameInfasrtucture.AssetManagement;
+﻿using GameInfasrtucture.AssetManagement;
 using GameInfasrtucture.Factory;
 using GameInfasrtucture.Services;
 using GameInfasrtucture.Services.Input;
 using GameInfasrtucture.Services.PersistentProgress;
 using GameInfasrtucture.Services.PersistentProgress.SaveLoad;
+using GameInfasrtucture.UI.Services.UIFactory;
+using GameInfasrtucture.UI.Services.Windows;
 using StaticData;
 using UnityEngine;
 
@@ -41,9 +42,12 @@ namespace GameInfasrtucture.GameStateMachine.States
             _services.RegisterSingle(InputService());
             _services.RegisterSingle<IAsset>(new Asset());
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
+            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAsset>(),
+                _services.Single<IStaticDataService>(), _services.Single<IPersistentProgressService>()));
+            _services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
             _services.RegisterSingle<IGameFactory>(
                 new GameFactory(_services.Single<IAsset>(), _services.Single<IStaticDataService>(),
-                    _services.Single<IPersistentProgressService>()));
+                    _services.Single<IPersistentProgressService>(), _services.Single<IWindowService>()));
             _services.RegisterSingle<ISaveLoadService>(
                 new SaveLoadService(_services.Single<IPersistentProgressService>(), _services.Single<IGameFactory>()));
         }

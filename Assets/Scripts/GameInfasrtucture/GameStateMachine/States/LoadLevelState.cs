@@ -2,6 +2,7 @@
 using GameInfasrtucture.Factory;
 using GameInfasrtucture.Services;
 using GameInfasrtucture.Services.PersistentProgress;
+using GameInfasrtucture.UI.Services.UIFactory;
 using Logic;
 using StaticData;
 using UnityEngine;
@@ -17,9 +18,10 @@ namespace GameInfasrtucture.GameStateMachine.States
         private readonly IGameFactory _gameFactory;
         private readonly IPersistentProgressService _progressService;
         private IStaticDataService _staticData;
+        private readonly IUIFactory _uiFactory;
 
         public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingScreen loadingScreen,
-            IGameFactory gameFactory, IPersistentProgressService progressService, IStaticDataService staticData)
+            IGameFactory gameFactory, IPersistentProgressService progressService, IStaticDataService staticData, IUIFactory uiFactory)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
@@ -27,6 +29,7 @@ namespace GameInfasrtucture.GameStateMachine.States
             _gameFactory = gameFactory;
             _progressService = progressService;
             _staticData = staticData;
+            _uiFactory = uiFactory;
         }
 
         public void Enter(string sceneName)
@@ -40,6 +43,7 @@ namespace GameInfasrtucture.GameStateMachine.States
 
         private void OnLoaded()
         {
+            InitUIRoot();
             InitGameWorld();
             InformProgressReaders();
             _gameStateMachine.Enter<GameLoopState>();
@@ -50,6 +54,9 @@ namespace GameInfasrtucture.GameStateMachine.States
             foreach (ISavedProgressReader progressReader in _gameFactory.ProgressReaders)
                 progressReader.LoadProgress(_progressService.PlayerProgress);
         }
+
+        private void InitUIRoot() => 
+            _uiFactory.CreateUIRoot();
 
         private void InitGameWorld()
         {
@@ -71,8 +78,10 @@ namespace GameInfasrtucture.GameStateMachine.States
             }
         }
 
-        private void InitHud() => _gameFactory.CreateHud();
+        private void InitHud() =>
+            _gameFactory.CreateHud();
 
-        private static void CameraFollow(GameObject hero) => Camera.main.GetComponent<CameraFollow>().Follow(hero);
+        private void CameraFollow(GameObject hero) => 
+            Camera.main.GetComponent<CameraFollow>().Follow(hero);
     }
 }

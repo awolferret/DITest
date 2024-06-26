@@ -5,6 +5,7 @@ using GameInfasrtucture.GameStateMachine.States;
 using GameInfasrtucture.Services;
 using GameInfasrtucture.Services.PersistentProgress;
 using GameInfasrtucture.Services.PersistentProgress.SaveLoad;
+using GameInfasrtucture.UI.Services.UIFactory;
 using Logic;
 using StaticData;
 using UnityEngine;
@@ -23,7 +24,8 @@ namespace GameInfasrtucture.GameStateMachine
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, allServices),
                 [typeof(LoadLevelState)] =
                     new LoadLevelState(this, sceneLoader, loadingScreen, allServices.Single<IGameFactory>(),
-                        allServices.Single<IPersistentProgressService>(), allServices.Single<IStaticDataService>()),
+                        allServices.Single<IPersistentProgressService>(), allServices.Single<IStaticDataService>(),
+                        allServices.Single<IUIFactory>()),
                 [typeof(LoadProgressState)] = new LoadProgressState(this,
                     allServices.Single<IPersistentProgressService>(), allServices.Single<ISaveLoadService>()),
                 [typeof(GameLoopState)] = new GameLoopState(this)

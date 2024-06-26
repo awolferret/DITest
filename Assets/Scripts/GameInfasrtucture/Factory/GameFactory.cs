@@ -3,7 +3,8 @@ using Enemy;
 using GameInfasrtucture.AssetManagement;
 using GameInfasrtucture.Services;
 using GameInfasrtucture.Services.PersistentProgress;
-using GameInfasrtucture.UI;
+using GameInfasrtucture.UI.Elements;
+using GameInfasrtucture.UI.Services.Windows;
 using Logic;
 using Logic.EnemySpawners;
 using StaticData;
@@ -17,16 +18,18 @@ namespace GameInfasrtucture.Factory
         private readonly IAsset _asset;
         private readonly IStaticDataService _staticData;
         private readonly IPersistentProgressService _progressService;
+        private readonly IWindowService _windowService;
 
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
         private GameObject _heroGameObject { get; set; }
 
-        public GameFactory(IAsset asset, IStaticDataService staticData, IPersistentProgressService progressService)
+        public GameFactory(IAsset asset, IStaticDataService staticData, IPersistentProgressService progressService, IWindowService windowService)
         {
             _asset = asset;
             _staticData = staticData;
             _progressService = progressService;
+            _windowService = windowService;
         }
 
         public GameObject CreateHero(GameObject initialPoint)
@@ -41,6 +44,9 @@ namespace GameInfasrtucture.Factory
             hud.GetComponentInChildren<LootCounter>()
                 .Construct(_progressService.PlayerProgress.WorldData);
             hud.GetComponent<ActorUI>().Constract(_heroGameObject.GetComponent<IHealth>());
+
+            foreach (OpenWindowButton button in hud.GetComponentsInChildren<OpenWindowButton>()) 
+                button.Construct(_windowService);
         }
 
         public GameObject CreateMonster(MonsterTypeId monsterType, Transform parent)

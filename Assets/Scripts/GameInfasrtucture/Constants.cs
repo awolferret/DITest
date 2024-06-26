@@ -14,7 +14,9 @@ namespace GameInfasrtucture
         public const string LayerNameHitable = "Hitable";
         public const string StaticDataMonstersPath = "StaticData/Monsters";
         public const string StaticDataLevelPath = "StaticData/Levels";
+        public const string StaticDataWindows = "StaticData/Windows/WindowsStaticData";
         public const string LootPath = "Loot/Loot";
         public const string SpawnerPath = "Spawner/SpawnPoint";
+        public const string UIRootPath = "Hud/UiRoot";
     }
 }

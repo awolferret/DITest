@@ -1,4 +1,4 @@
-﻿namespace GameInfasrtucture.UI.Services.Windows
+﻿namespace GameInfrastructure.UI.Services.Windows
 {
     public enum WindowId
     {

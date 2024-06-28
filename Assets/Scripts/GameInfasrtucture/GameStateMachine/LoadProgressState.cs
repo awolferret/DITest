@@ -1,9 +1,9 @@
 ﻿using Data;
-using GameInfasrtucture.GameStateMachine.States;
-using GameInfasrtucture.Services.PersistentProgress;
-using GameInfasrtucture.Services.PersistentProgress.SaveLoad;
+using GameInfrastructure.GameStateMachine.States;
+using GameInfrastructure.Services.PersistentProgress;
+using GameInfrastructure.Services.PersistentProgress.SaveLoad;
 
-namespace GameInfasrtucture.GameStateMachine
+namespace GameInfrastructure.GameStateMachine
 {
     public class LoadProgressState : IState
     {

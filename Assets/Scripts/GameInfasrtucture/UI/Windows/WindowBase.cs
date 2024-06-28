@@ -1,10 +1,10 @@
 ﻿using System;
 using Data;
-using GameInfasrtucture.Services.PersistentProgress;
+using GameInfrastructure.Services.PersistentProgress;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GameInfasrtucture.UI
+namespace GameInfrastructure.UI
 {
     public abstract class WindowBase : MonoBehaviour
     {

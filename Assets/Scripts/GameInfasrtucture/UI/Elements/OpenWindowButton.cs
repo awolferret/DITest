@@ -1,8 +1,8 @@
-﻿using GameInfasrtucture.UI.Services.Windows;
+﻿using GameInfrastructure.UI.Services.Windows;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GameInfasrtucture.UI.Elements
+namespace GameInfrastructure.UI.Elements
 {
     public class OpenWindowButton : MonoBehaviour
     {

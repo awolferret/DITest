@@ -1,12 +1,11 @@
-
-namespace GameInfasrtucture
+namespace GameInfrastructure
 {
-    public class Constants 
+    public class Constants
     {
         public const float Epsilon = 0.001f;
         public const string BootstrapSceneName = "BootStrap";
-        public const string HeroPath = "Hero/Cube";
-        public const string HUDPath = "Hud/Hud";
+        public const string HeroPath = "Cube";
+        public const string HUDPath = "Hud";
         public const string ProgressKey = "Progress";
         public const string GameSceneName = "Game";
         public const string Initialpoint = "InitialPoint";
@@ -15,8 +14,8 @@ namespace GameInfasrtucture
         public const string StaticDataMonstersPath = "StaticData/Monsters";
         public const string StaticDataLevelPath = "StaticData/Levels";
         public const string StaticDataWindows = "StaticData/Windows/WindowsStaticData";
-        public const string LootPath = "Loot/Loot";
-        public const string SpawnerPath = "Spawner/SpawnPoint";
-        public const string UIRootPath = "Hud/UiRoot";
+        public const string LootAddress = "Loot";
+        public const string SpawnerAddress = "SpawnPoint";
+        public const string UIRootPath = "UiRoot";
     }
 }

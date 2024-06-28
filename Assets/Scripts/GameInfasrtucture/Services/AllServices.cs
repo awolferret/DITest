@@ -1,4 +1,4 @@
-﻿namespace GameInfasrtucture.Services
+﻿namespace GameInfrastructure.Services
 {
     public class AllServices
     {

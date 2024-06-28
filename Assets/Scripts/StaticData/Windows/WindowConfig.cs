@@ -1,6 +1,6 @@
 ﻿using System;
-using GameInfasrtucture.UI;
-using GameInfasrtucture.UI.Services.Windows;
+using GameInfrastructure.UI;
+using GameInfrastructure.UI.Services.Windows;
 
 namespace StaticData.Windows
 {

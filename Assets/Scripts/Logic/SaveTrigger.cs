@@ -1,6 +1,6 @@
 ﻿using Character;
-using GameInfasrtucture.Services;
-using GameInfasrtucture.Services.PersistentProgress.SaveLoad;
+using GameInfrastructure.Services;
+using GameInfrastructure.Services.PersistentProgress.SaveLoad;
 using UnityEngine;
 
 namespace Logic

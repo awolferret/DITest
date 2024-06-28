@@ -1,6 +1,6 @@
 ﻿using System;
 using Data;
-using GameInfasrtucture.Services.PersistentProgress;
+using GameInfrastructure.Services.PersistentProgress;
 using Logic;
 using UnityEngine;
 

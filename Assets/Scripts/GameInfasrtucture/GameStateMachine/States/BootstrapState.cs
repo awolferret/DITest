@@ -1,15 +1,15 @@
-﻿using GameInfasrtucture.AssetManagement;
-using GameInfasrtucture.Factory;
-using GameInfasrtucture.Services;
-using GameInfasrtucture.Services.Input;
-using GameInfasrtucture.Services.PersistentProgress;
-using GameInfasrtucture.Services.PersistentProgress.SaveLoad;
-using GameInfasrtucture.UI.Services.UIFactory;
-using GameInfasrtucture.UI.Services.Windows;
+﻿using GameInfrastructure.AssetManagement;
+using GameInfrastructure.Factory;
+using GameInfrastructure.Services;
+using GameInfrastructure.Services.Input;
+using GameInfrastructure.Services.PersistentProgress;
+using GameInfrastructure.Services.PersistentProgress.SaveLoad;
+using GameInfrastructure.UI.Services.UIFactory;
+using GameInfrastructure.UI.Services.Windows;
 using StaticData;
 using UnityEngine;
 
-namespace GameInfasrtucture.GameStateMachine.States
+namespace GameInfrastructure.GameStateMachine.States
 {
     public class BootstrapState : IState
     {
@@ -25,22 +25,21 @@ namespace GameInfasrtucture.GameStateMachine.States
             RegisterServices();
         }
 
-        public void Enter()
-        {
+        public void Enter() => 
             _sceneLoader.Load(Constants.BootstrapSceneName, OnLoaded: EnterLoadLevel);
-        }
 
         public void Exit()
         {
         }
 
-        private void EnterLoadLevel() => _gameStateMachine.Enter<LoadProgressState>();
+        private void EnterLoadLevel() =>
+            _gameStateMachine.Enter<LoadProgressState>();
 
         private void RegisterServices()
         {
             RegisterStaticData();
             _services.RegisterSingle(InputService());
-            _services.RegisterSingle<IAsset>(new Asset());
+            RegisterAssetProvider();
             _services.RegisterSingle<IGameStateMachine>(_gameStateMachine);
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
             _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAsset>(),
@@ -51,6 +50,13 @@ namespace GameInfasrtucture.GameStateMachine.States
                     _services.Single<IPersistentProgressService>(), _services.Single<IWindowService>()));
             _services.RegisterSingle<ISaveLoadService>(
                 new SaveLoadService(_services.Single<IPersistentProgressService>(), _services.Single<IGameFactory>()));
+        }
+
+        private void RegisterAssetProvider()
+        {
+            Asset asset = new Asset();
+            asset.Initialize();
+            _services.RegisterSingle<IAsset>(asset);
         }
 
         private void RegisterStaticData()

@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace GameInfasrtucture.UI
+namespace GameInfrastructure.UI
 {
     public class ShopWindow : WindowBase
     {

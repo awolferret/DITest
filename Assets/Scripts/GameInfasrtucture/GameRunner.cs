@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace GameInfasrtucture
+namespace GameInfrastructure
 {
     public class GameRunner : MonoBehaviour
     {

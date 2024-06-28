@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
-using GameInfasrtucture.Factory;
-using GameInfasrtucture.GameStateMachine.States;
-using GameInfasrtucture.Services;
-using GameInfasrtucture.Services.PersistentProgress;
-using GameInfasrtucture.Services.PersistentProgress.SaveLoad;
-using GameInfasrtucture.UI.Services.UIFactory;
+using GameInfrastructure.Factory;
+using GameInfrastructure.GameStateMachine.States;
+using GameInfrastructure.Services;
+using GameInfrastructure.Services.PersistentProgress;
+using GameInfrastructure.Services.PersistentProgress.SaveLoad;
+using GameInfrastructure.UI.Services.UIFactory;
 using Logic;
 using UnityEngine;
 
-namespace GameInfasrtucture.GameStateMachine
+namespace GameInfrastructure.GameStateMachine
 {
     public class GameStateMachine : MonoBehaviour, IGameStateMachine
     {

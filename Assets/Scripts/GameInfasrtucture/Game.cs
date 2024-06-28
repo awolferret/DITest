@@ -1,8 +1,8 @@
-using GameInfasrtucture.Services;
+using GameInfrastructure.Services;
 using Logic;
 using UnityEngine;
 
-namespace GameInfasrtucture
+namespace GameInfrastructure
 {
     public class Game : MonoBehaviour
     {

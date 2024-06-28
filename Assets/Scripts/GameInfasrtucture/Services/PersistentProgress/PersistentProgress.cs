@@ -1,4 +1,4 @@
-﻿namespace GameInfasrtucture.Services.PersistentProgress
+﻿namespace GameInfrastructure.Services.PersistentProgress
 {
     public class PersistentProgress
     {

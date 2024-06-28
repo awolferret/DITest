@@ -1,5 +1,5 @@
 ﻿using Data;
-using GameInfasrtucture.Factory;
+using GameInfrastructure.Factory;
 using UnityEngine;
 
 namespace Enemy
@@ -20,9 +20,9 @@ namespace Enemy
         private void OnDisable() =>
             _enemyDeath.OnDeath -= SpawnLoot;
 
-        private void SpawnLoot()
+        private async void SpawnLoot()
         {
-            LootPiece loot = _factory.CreateLoot();
+            LootPiece loot = await _factory.CreateLoot();
             loot.transform.position = transform.position;
             Loot lootItem = SetLootValue();
             loot.Init(lootItem);

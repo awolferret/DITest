@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace GameInfasrtucture.UI.Elements
+namespace GameInfrastructure.UI.Elements
 {
     public class LootCounter : MonoBehaviour
     {
@@ -10,19 +10,17 @@ namespace GameInfasrtucture.UI.Elements
 
         private WorldData _worldData;
 
-        private void Start() => 
-            UpdateCounter();
-
         public void Construct(WorldData worldData)
         {
             _worldData = worldData;
             _worldData.LootData.Changed += UpdateCounter;
+            UpdateCounter();
         }
 
-        private void OnDisable() => 
+        private void OnDisable() =>
             _worldData.LootData.Changed -= UpdateCounter;
 
-        private void UpdateCounter() => 
+        private void UpdateCounter() =>
             _lootText.text = $"{_worldData.LootData.Collected}";
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Data;
 
-namespace GameInfasrtucture.Services.PersistentProgress.SaveLoad
+namespace GameInfrastructure.Services.PersistentProgress.SaveLoad
 {
     public interface ISaveLoadService : IService
     {

@@ -1,4 +1,4 @@
-using GameInfasrtucture.Factory;
+using GameInfrastructure.Factory;
 using UnityEngine;
 using UnityEngine.AI;
 

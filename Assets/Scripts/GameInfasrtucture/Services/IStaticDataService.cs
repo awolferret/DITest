@@ -1,8 +1,8 @@
-﻿using GameInfasrtucture.UI.Services.Windows;
+﻿using GameInfrastructure.UI.Services.Windows;
 using StaticData;
 using StaticData.Windows;
 
-namespace GameInfasrtucture.Services
+namespace GameInfrastructure.Services
 {
     public interface IStaticDataService : IService
     {

@@ -5,7 +5,7 @@ using StaticData;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Constants = GameInfasrtucture.Constants;
+using Constants = GameInfrastructure.Constants;
 
 namespace Editor
 {

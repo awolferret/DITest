@@ -1,4 +1,4 @@
-﻿namespace GameInfasrtucture.Services
+﻿namespace GameInfrastructure.Services
 {
     public interface IService
     {

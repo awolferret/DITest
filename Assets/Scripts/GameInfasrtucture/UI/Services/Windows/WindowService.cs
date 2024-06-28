@@ -1,6 +1,6 @@
-﻿using GameInfasrtucture.UI.Services.UIFactory;
+﻿using GameInfrastructure.UI.Services.UIFactory;
 
-namespace GameInfasrtucture.UI.Services.Windows
+namespace GameInfrastructure.UI.Services.Windows
 {
     public class WindowService : IWindowService
     {

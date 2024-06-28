@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using GameInfasrtucture;
-using GameInfasrtucture.Services;
-using GameInfasrtucture.UI.Services.Windows;
+using GameInfrastructure;
+using GameInfrastructure.Services;
+using GameInfrastructure.UI.Services.Windows;
 using StaticData.Windows;
 using UnityEngine;
 

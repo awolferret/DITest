@@ -1,7 +1,7 @@
 ﻿using Character;
-using GameInfasrtucture.GameStateMachine;
-using GameInfasrtucture.GameStateMachine.States;
-using GameInfasrtucture.Services;
+using GameInfrastructure.GameStateMachine;
+using GameInfrastructure.GameStateMachine.States;
+using GameInfrastructure.Services;
 using UnityEngine;
 
 namespace Logic

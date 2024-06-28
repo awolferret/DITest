@@ -1,21 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Enemy;
-using GameInfasrtucture.Services;
-using GameInfasrtucture.Services.PersistentProgress;
+using GameInfrastructure.Services;
+using GameInfrastructure.Services.PersistentProgress;
 using StaticData;
 using UnityEngine;
 
-namespace GameInfasrtucture.Factory
+namespace GameInfrastructure.Factory
 {
     public interface IGameFactory : IService
     {
-        GameObject CreateHero(Vector3 initialPoint);
-        void CreateHud();
+        Task<GameObject> CreateHero(Vector3 initialPoint);
+        Task CreateHud();
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
         void CleanUp();
-        GameObject CreateMonster(MonsterTypeId monsterType, Transform parent);
-        LootPiece CreateLoot();
-        void CreateSpawner(Vector3 position, string id, MonsterTypeId monsterType);
+        Task<GameObject> CreateMonster(MonsterTypeId monsterType, Transform parent);
+        Task<LootPiece> CreateLoot();
+        Task CreateSpawner(Vector3 position, string id, MonsterTypeId monsterType);
+        Task WarmUp();
     }
 }

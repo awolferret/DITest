@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using GameInfasrtucture;
+using GameInfrastructure;
 using Logic;
 using UnityEngine;
 

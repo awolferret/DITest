@@ -1,7 +1,7 @@
-﻿using GameInfasrtucture.GameStateMachine.States;
-using GameInfasrtucture.Services;
+﻿using GameInfrastructure.GameStateMachine.States;
+using GameInfrastructure.Services;
 
-namespace GameInfasrtucture.GameStateMachine
+namespace GameInfrastructure.GameStateMachine
 {
     public interface IGameStateMachine : IService
     {

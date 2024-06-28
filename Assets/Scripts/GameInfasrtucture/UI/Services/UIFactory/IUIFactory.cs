@@ -1,10 +1,11 @@
-﻿using GameInfasrtucture.Services;
+﻿using System.Threading.Tasks;
+using GameInfrastructure.Services;
 
-namespace GameInfasrtucture.UI.Services.UIFactory
+namespace GameInfrastructure.UI.Services.UIFactory
 {
     public interface IUIFactory : IService
     {
         void CreateShop();
-        void CreateUIRoot();
+        Task CreateUIRoot();
     }
 }

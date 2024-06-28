@@ -1,8 +1,8 @@
-using GameInfasrtucture.GameStateMachine.States;
+using GameInfrastructure.GameStateMachine.States;
 using Logic;
 using UnityEngine;
 
-namespace GameInfasrtucture
+namespace GameInfrastructure
 {
     public class Bootstrapper : MonoBehaviour, ICoroutineRunner
     {

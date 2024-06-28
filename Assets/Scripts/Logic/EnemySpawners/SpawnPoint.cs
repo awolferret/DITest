@@ -1,7 +1,8 @@
-﻿using Data;
+﻿using System.Threading.Tasks;
+using Data;
 using Enemy;
-using GameInfasrtucture.Factory;
-using GameInfasrtucture.Services.PersistentProgress;
+using GameInfrastructure.Factory;
+using GameInfrastructure.Services.PersistentProgress;
 using StaticData;
 using UnityEngine;
 
@@ -39,9 +40,9 @@ namespace Logic.EnemySpawners
                 progress.KillData.ClearedSpawners.Add(_id);
         }
 
-        private void Spawn()
+        private async void Spawn()
         {
-            GameObject monster = _factory.CreateMonster(_monsterType, transform);
+            GameObject monster = await _factory.CreateMonster(_monsterType, transform);
             _enemyDeath = monster.GetComponent<EnemyDeath>();
             _enemyDeath.OnDeath += OnDeath;
         }

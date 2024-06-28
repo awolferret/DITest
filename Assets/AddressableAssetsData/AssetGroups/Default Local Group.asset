@@ -16,7 +16,37 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 0bf898134419f7641af128a395f51b8e
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: a8f518c3daae94e43ae34e7cfd6f405f
+    m_Address: EnemyCube
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d8a73ad69f3ca04da5a39d595dda248
+    m_Address: Loot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ec7f17187248984abca59dc8d59ee1d
+    m_Address: SpawnPoint
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 643fcaaeb0bd8a4408e8768d95e10eef
+    m_Address: Cube
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80e9dfa88713447438283999e6f54018
+    m_Address: Hud
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93a142d30fa5a0b46871b2ad261f9765
+    m_Address: UiRoot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e185567dd9927854bbf117327c226bb8, type: 2}
   m_SchemaSet:

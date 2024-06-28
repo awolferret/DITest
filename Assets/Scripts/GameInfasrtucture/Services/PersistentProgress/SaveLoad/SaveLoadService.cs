@@ -1,8 +1,8 @@
 ﻿using Data;
-using GameInfasrtucture.Factory;
+using GameInfrastructure.Factory;
 using UnityEngine;
 
-namespace GameInfasrtucture.Services.PersistentProgress.SaveLoad
+namespace GameInfrastructure.Services.PersistentProgress.SaveLoad
 {
     public class SaveLoadService : ISaveLoadService
     {

@@ -21,4 +21,8 @@ MonoBehaviour:
   Range: 1
   Cleavage: 0.5
   MoveSpeed: 2
-  Prefab: {fileID: 471300450488183601, guid: a8f518c3daae94e43ae34e7cfd6f405f, type: 3}
+  PrefabReference:
+    m_AssetGUID: a8f518c3daae94e43ae34e7cfd6f405f
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

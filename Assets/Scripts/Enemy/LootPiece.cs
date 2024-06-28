@@ -27,8 +27,6 @@ namespace Enemy
             if (!_picked)
             {
                 _picked = true;
-
-                Debug.Log("Wd" + _worldData);
                 _worldData.LootData.Collect(_loot);
                 Destroy(gameObject);
             }

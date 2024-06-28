@@ -1,6 +1,6 @@
-﻿using GameInfasrtucture.Services;
+﻿using GameInfrastructure.Services;
 
-namespace GameInfasrtucture.UI.Services.Windows
+namespace GameInfrastructure.UI.Services.Windows
 {
     public interface IWindowService : IService
     {

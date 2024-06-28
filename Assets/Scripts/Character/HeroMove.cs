@@ -1,8 +1,8 @@
 using Data;
-using GameInfasrtucture;
-using GameInfasrtucture.Services;
-using GameInfasrtucture.Services.Input;
-using GameInfasrtucture.Services.PersistentProgress;
+using GameInfrastructure;
+using GameInfrastructure.Services;
+using GameInfrastructure.Services.Input;
+using GameInfrastructure.Services.PersistentProgress;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
